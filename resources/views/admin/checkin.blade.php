@@ -1,5 +1,10 @@
 @extends('admin.layouts.main')
 @section('container')
+    @if (session()->has('checked'))
+        <script>
+            alert("Check in berhasil.");
+        </script>
+    @endif
     <div class="row my-3">
         <h3>Cek Tiket</h3>
         <form action="/admin/check" method="get">

@@ -47,6 +47,34 @@ class AdminController extends Controller
 
         $tickets->save();
 
-        return redirect('/admin/check?search=' . $id);
+        return redirect('/admin/check?search=' . $id)->with('checked', 'berhasil');
+    }
+
+    public function edit(Ticket $ticket)
+    {
+        return view('admin.edit', compact('ticket'));
+    }
+    
+    public function update(Request $request,Ticket $ticket)
+    {
+        $validated = $request->validate([
+                'email' => 'required|email',
+                'nama' => 'required',
+                'ktp' => 'required',
+                'checked' => 'required'
+            ]);
+        
+        if($validated['checked'] == 'Tersedia')
+        {
+            $validated['checked'] = NULL;
+        }
+        else{
+            $validated['checked'] = 'yes';
+        }
+
+        Ticket::where('id', $ticket->id)
+                ->update($validated);
+
+        return redirect('admin/')->with('edited', '');
     }
 }

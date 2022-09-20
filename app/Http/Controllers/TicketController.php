@@ -82,7 +82,7 @@ class TicketController extends Controller
      */
     public function edit(Ticket $ticket)
     {
-        return view('admin.edit', compact('ticket'));
+        // return view('admin.edit', compact('ticket'));
     }
 
     /**
@@ -95,22 +95,19 @@ class TicketController extends Controller
     public function update(UpdateTicketRequest $request, Ticket $ticket)
     {
         $validated = $request->validate([
+            'email' => 'required|email',
             'nama' => 'required',
-            'email' => 'required|email:dns',
-            'ktp' => 'required|min:16|max:16',
+            'ktp' => 'required',
         ]);
 
-        dd($validated);
+        dd($ticket);
+        
+        Ticket::where('id', $ticket->id)
+        ->update($validated);
 
-        $tiket = new Ticket;
-        $tiket->nama = $request->nama;
-        $tiket->ktp = $request->ktp;
-        $tiket->email = $request->email;
-        $tiket->checked = $request->checked === 'Tersedia' ? NULL : 'yes';
-
-        $tiket->save();
-
-        return view('admin/')->with('success', 'Tiket berhasil dipesan!');
+        return redirect('admin/', [
+            'ticket' => $validated,
+        ]);
     }
 
     /**
@@ -122,6 +119,6 @@ class TicketController extends Controller
     public function destroy(Ticket $ticket)
     {
         $ticket->delete();
-        return redirect('/admin')->with('deleted');
+        return redirect('/admin')->with('deleted', 'delete succes');
     }
 }

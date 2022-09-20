@@ -26,6 +26,9 @@ Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
 Route::get('/admin/check', [AdminController::class, 'checkin'])->middleware('auth');
 Route::get('/admin/report', [AdminController::class, 'report'])->middleware('auth');
 Route::post('/admin/checked', [AdminController::class, 'checked'])->middleware('auth');
+Route::get('/admin/{ticket}/edit', [AdminController::class, 'edit']);
+Route::put('admin/{ticket}/update', [AdminController::class, 'update']);
+
 
 Route::get('/admin/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/admin/login', [LoginController::class, 'authenticate']);
