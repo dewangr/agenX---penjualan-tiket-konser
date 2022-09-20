@@ -21,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('tickets', TicketController::class);
+Route::get('tickets/downloadPDF/{id}', [TicketController::class,'downloadPDF']);
+
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
 Route::get('/admin/check', [AdminController::class, 'checkin'])->middleware('auth');

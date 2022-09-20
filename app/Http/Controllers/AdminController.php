@@ -72,7 +72,7 @@ class AdminController extends Controller
             $validated['checked'] = 'yes';
         }
 
-        Ticket::where('id', $ticket->id)
+        Ticket::find($ticket->id)
                 ->update($validated);
 
         return redirect('admin/')->with('edited', '');

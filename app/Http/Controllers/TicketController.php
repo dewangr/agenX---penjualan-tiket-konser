@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Routing\Controller;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
-use GuzzleHttp\Psr7\Request;
 
 class TicketController extends Controller
 {
@@ -43,7 +44,7 @@ class TicketController extends Controller
      */
     public function store(StoreTicketRequest $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'nama' => 'required',
             'email' => 'required|email:dns',
             'ktp' => 'required|min:16|max:16'
@@ -56,7 +57,7 @@ class TicketController extends Controller
 
         $ticket->save();
 
-        return redirect()->route('tickets.show', $ticket->id)->with('success', 'Tiket berhasil dipesan!');
+        return redirect()->route('tickets.show', $ticket->id)->with('success', ' ');
     }
 
     /**
@@ -120,5 +121,15 @@ class TicketController extends Controller
     {
         $ticket->delete();
         return redirect('/admin')->with('deleted', 'delete succes');
+    }
+
+    public function downloadPDF($id)
+    {
+        $ticket = Ticket::find($id);
+        $pdf = PDF::loadView('pdf', [
+            'ticket' => $ticket
+        ]);
+
+        return $pdf->download('tiket-no-'.$id.'.pdf');
     }
 }

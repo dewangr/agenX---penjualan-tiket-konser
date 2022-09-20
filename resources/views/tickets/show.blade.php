@@ -1,5 +1,10 @@
 @extends('layouts.main')
 @section('container')
+    @if (session()->has('success'))
+        <script>
+            alert('Tiket berhasil dipesan!')
+        </script>
+    @endif
     <div class="col-lg-6 shadow mx-auto my-5 py-4 ps-4 pe-3 border-rounded">
         <div class="row text-center">
             <h4>Rekapan Pemesanan</h4>
@@ -31,7 +36,8 @@
             </tr>
         </table>
         <div class="d-flex justify-content-end me-4">
-            <a class="btn-sm btn-primary btn" href="/">Kembali ke Beranda</a>
+            <a class="btn-sm btn-info btn me-3" href="/tickets/downloadPDF/{{ $ticket->id }}">Download</a>
+            <a class="btn-sm btn-primary btn" href="/tickets/create">Pesan Lagi</a>
         </div>
     </div>
 @endsection
