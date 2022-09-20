@@ -7,7 +7,7 @@
         <hr>
         <hr> <br>
         <small>TICKET NUMBER</small>
-        <h2>{{ $ticket->id }}</h2>
+        <h2>{{ $ticket->number }}</h2>
         <hr> <br>
         <small>NAME</small>
         <h2>{{ $ticket->nama }}</h2>

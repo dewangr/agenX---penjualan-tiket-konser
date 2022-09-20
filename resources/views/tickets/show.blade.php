@@ -12,7 +12,7 @@
         <table class="mt-3 ms-4">
             <tr>
                 <td><strong>Nomor Tiket</strong></td>
-                <td><strong>:</strong> {{ $ticket->id }}</td>
+                <td><strong>:</strong> {{ $ticket->number }}</td>
             </tr>
             <tr>
                 <td><strong>Tanggal Pesan</strong></td>

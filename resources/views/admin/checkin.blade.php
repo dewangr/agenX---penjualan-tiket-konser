@@ -22,7 +22,7 @@
     @if (request('search'))
         <div class="card mb-4 col-lg-4">
             <div class="card-body ">
-                <h3 class="card-title">No Tiket: {{ $tiket->id }}</h3>
+                <h3 class="card-title">Tiket: {{ $tiket->number }}</h3>
                 <p>
                     <small>
                         dipesan pada: {{ $tiket->created_at }}
@@ -47,7 +47,7 @@
                         <td><strong>:</strong> {{ $tiket->checked === 'yes' ? 'Tidak Tersedia' : 'Tersedia' }}</td>
                     </tr>
                 </table>
-                <form action="/admin/checked?id={{ $tiket->id }}" method="post">
+                <form action="/admin/checked?id={{ $tiket->number }}" method="post">
                     @csrf
                     <div class="d-flex justify-content-end">
                         {{-- @method('PUT') --}}

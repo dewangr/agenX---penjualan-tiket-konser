@@ -30,8 +30,8 @@ class AdminController extends Controller
     public function checkin()
     {
         if (request('search')) {
-            $id = request('search');
-            $tiket = Ticket::where('id', $id)->first();
+            $number = request('search');
+            $tiket = Ticket::where('number', $number)->first();
             return view('admin.checkin', [
                 'tiket' => $tiket,
             ])->with('result', 'Data berhasil didapatkan');
@@ -41,13 +41,13 @@ class AdminController extends Controller
 
     public function checked()
     {
-        $id = request('id');
-        $tickets = Ticket::where('id', $id)->first();
+        $number = request('id');
+        $tickets = Ticket::where('number', $number)->first();
         $tickets->checked = 'yes';
 
         $tickets->save();
 
-        return redirect('/admin/check?search=' . $id)->with('checked', 'berhasil');
+        return redirect('/admin/check?search=' . $number)->with('checked', 'berhasil');
     }
 
     public function edit(Ticket $ticket)

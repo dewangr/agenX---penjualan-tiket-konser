@@ -8,9 +8,6 @@
         <div class="row mt-3">
             <form class="px-4" action="{{ route('tickets.store') }}" method="POST">
                 @csrf
-                {{-- <div class="form-floating mb-2">
-                    <input type="hidden" class=" hidden form-control" id="tiket" placeholder="tiket">
-                </div> --}}
                 <div class="form-floating mb-2">
                     <input required type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
                         name="nama" placeholder="nama" value="{{ old('nama') }}">

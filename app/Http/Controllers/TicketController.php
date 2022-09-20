@@ -51,6 +51,7 @@ class TicketController extends Controller
         ]);
 
         $ticket = new Ticket;
+        $ticket->number = fake()->unique()->regexify('[A-Z]{5}[0-9]{5}');
         $ticket->nama = $request->nama;
         $ticket->ktp = $request->ktp;
         $ticket->email = $request->email;
@@ -126,9 +127,7 @@ class TicketController extends Controller
     public function downloadPDF($id)
     {
         $ticket = Ticket::find($id);
-        $pdf = PDF::loadView('pdf', [
-            'ticket' => $ticket
-        ]);
+        $pdf = PDF::loadView('pdf', compact('ticket'));
 
         return $pdf->download('tiket-no-'.$id.'.pdf');
     }

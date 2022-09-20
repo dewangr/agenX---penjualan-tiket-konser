@@ -16,7 +16,7 @@
                     @foreach ($uncheck as $un)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $un->id }}</td>
+                            <td>{{ $un->number }}</td>
                             <td>{{ $un->nama }}</td>
                             <td>{{ $un->email }}</td>
                         </tr>
@@ -39,7 +39,7 @@
                     @foreach ($checked as $cek)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $cek->id }}</td>
+                            <td>{{ $cek->number }}</td>
                             <td>{{ $cek->nama }}</td>
                             <td>{{ $cek->email }}</td>
                         </tr>

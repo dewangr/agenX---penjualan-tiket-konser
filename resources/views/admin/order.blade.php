@@ -26,7 +26,7 @@
                 @foreach ($tickets as $ticket)
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
-                        <td>{{ $ticket->id }}</td>
+                        <td>{{ $ticket->number }}</td>
                         <td>{{ $ticket->nama }}</td>
                         <td>{{ $ticket->ktp }}</td>
                         <td>{{ $ticket->email }}</td>

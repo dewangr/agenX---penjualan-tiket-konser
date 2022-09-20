@@ -3,7 +3,7 @@
     <div class="row my-3">
         <h3 class="my-2 mb-4">Edit Detail Pesanan</h3>
         <div class="ms-3 col-5">
-            <form action="/admin/{{ $ticket->id }}/update" method="post">
+            <form action="/admin/{{ $ticket->number }}/update" method="post">
                 @csrf
                 <div class="mb-1 row">
                     <label for="id" class="col-sm-4 col-form-label" name="id"> Nomor Tiket</label>

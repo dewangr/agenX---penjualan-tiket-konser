@@ -17,6 +17,7 @@ class TicketFactory extends Factory
     public function definition()
     {
         return [
+            'number' => fake()->unique()->regexify('[A-Z]{5}[0-9]{5}'),
             'nama' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'ktp' => fake()->randomNumber(),
